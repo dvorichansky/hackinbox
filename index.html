@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+  </head>
+  <body>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        function hackinboxGetCookie(name) {
+          var matches = document.cookie.match(
+            new RegExp(
+              "(?:^|; )" +
+                name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+                "=([^;]*)"
+            )
+          );
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        if (!hackinboxGetCookie("hackinbox")) {
+          setTimeout(function() {
+            var h = document.getElementsByTagName("link")[0];
+            var css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = "/hackinbox/css/hackinbox.css";
+            h.parentNode.insertBefore(css, h);
+            var h = document.getElementsByTagName("head")[0];
+            var js = document.createElement("script");
+            js.defer = true;
+            js.async = true;
+            js.setAttribute("nomaps", "");
+            js.setAttribute("charset", "UTF-8");
+            js.src = "/hackinbox/js/hackinbox.js";
+            h.appendChild(js);
+          }, 10);
+        }
+      });
+    </script>
+  </body>
+</html>

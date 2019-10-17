@@ -1,0 +1,12 @@
+.btn-outline-secondary {
+  border: 1px solid #ced4da;
+}
+
+img {
+  max-width: 100%;
+}
+
+.form-text .badge {
+  font-size: 90%;
+  line-height: 1.2;
+}
