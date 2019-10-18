@@ -8,7 +8,8 @@
    * URL configuration
    * (native js)
    */
-  const url_widget = "/hackinbox/";
+
+  const url_widget = `${location.origin}/hackinbox/`;
   const url_json = `${url_widget}hackinbox_data.json`;
 
   /**
@@ -31,7 +32,7 @@
 
       setTimeout(() => {
         hackinboxRender(data);
-        hackinboxForm(data.hackinbox_form.mask);
+        hackinboxForm();
         setTimeInitializeClock(data.hackinbox_counter.deadline);
         hackinboxEvent();
       }, +data.display_delay * 1000);
@@ -85,11 +86,14 @@
                 
                     <form class="hackinbox-form" action="POST">
                         <input type="hidden" name="form" value="${form.name}">
-                        <input type="hidden" name="referer" value="${location.href}">
+                        <input type="hidden" name="referer" value="${
+                          location.href
+                        }">
                         <input 
                           type="text" 
                           name="phone" 
                           class="hackinbox-form__input hackinbox-form__userphone" 
+                          value="${form.mask}"
                           placeholder="${form.placeholder}" 
                           maxlength="34">
                         <small class="hackinbox-form__message-error">${
@@ -103,9 +107,12 @@
                             <div class="hackinbox-form__success-text">${
                               form.success_text
                             }</div>
-                            <button class="hackinbox-form__button hackinbox-form__success-button" data-hackinbox="close">${
-                              form.success_button
-                            }</button>
+                            <button 
+                              type="button" 
+                              class="hackinbox-form__button hackinbox-form__success-button" 
+                              data-hackinbox="close">${
+                                form.success_button
+                              }</button>
                         </div>                      
                     </form>                    
                 </div>
@@ -210,12 +217,12 @@
    * form
    * (used jQuery)
    */
-  function hackinboxForm(mask) {
+  function hackinboxForm() {
     const phone = $(".hackinbox-form [name=phone]");
     const submit = $(".hackinbox-form [type=submit]");
-    const maskPattern = mask;
+    const inputPhone = document.querySelector(".hackinbox-form [name=phone]");
 
-    $(phone).mask(maskPattern);
+    inputMaskInitialize(inputPhone);
 
     document.addEventListener("submit", function(e) {
       const target = e.target;
@@ -224,11 +231,7 @@
       }
       e.preventDefault();
 
-      if (0 === $(phone).length) {
-        return;
-      }
-
-      if (maskPattern.length > $(phone).val().length) {
+      if (inputPhone.value.indexOf("_") !== -1) {
         phone.addClass("hackinbox-form__userphone-error");
         return;
       }
@@ -254,6 +257,43 @@
         error: function() {}
       });
     });
+  }
+
+  /**
+   * mask input
+   * (native js)
+   */
+  function inputMaskInitialize(inputPhone) {
+    function setCursorPosition(pos, elem) {
+      elem.focus();
+      if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
+      else if (elem.createTextRange) {
+        const range = elem.createTextRange();
+        range.collapse(true);
+        range.moveEnd("character", pos);
+        range.moveStart("character", pos);
+        range.select();
+      }
+    }
+
+    function mask() {
+      let matrix = this.defaultValue,
+        i = 0,
+        def = matrix.replace(/\D/g, ""),
+        val = this.value.replace(/\D/g, "");
+      def.length >= val.length && (val = def);
+      matrix = matrix.replace(/[_\d]/g, function(a) {
+        return val.charAt(i++) || "_";
+      });
+      this.value = matrix;
+      i = matrix.lastIndexOf(val.substr(-1));
+      i < matrix.length && matrix != this.defaultValue
+        ? i++
+        : (i = matrix.indexOf("_"));
+      setCursorPosition(i, this);
+    }
+
+    inputPhone.addEventListener("input", mask, false);
   }
 
   /**
