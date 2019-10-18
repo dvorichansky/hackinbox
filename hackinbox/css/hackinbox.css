@@ -54,6 +54,7 @@
 /* hackinbox picture */
 .hackinbox-picture__img {
     display: inherit;
+    max-width: none;
     border-top-left-radius: 8px;
 }
 
