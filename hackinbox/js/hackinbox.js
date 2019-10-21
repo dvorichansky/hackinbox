@@ -189,7 +189,7 @@
   }
 
   function activateSetCookie() {
-    setCookie("hackinbox", "loaded", { "max-age": 86400e3 });
+    setCookie("hackinbox", "loaded", { "max-age": 86400 });
   }
 
   /**
@@ -253,6 +253,7 @@
             })
             .remove();
           $(".hackinbox-counter, .hackinbox-content__title").remove();
+          activateSetCookie();
         },
         error: function() {}
       });
