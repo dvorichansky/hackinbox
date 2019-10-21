@@ -53,9 +53,10 @@
 
 /* hackinbox picture */
 .hackinbox-picture__img {
-    display: inherit;
     max-width: none;
     border-top-left-radius: 8px;
+    margin: 0 !important;
+    float: none !important;
 }
 
 @media (min-width: 1025px) {
@@ -79,7 +80,7 @@
 
 @media (max-width: 1025px) and (max-height: 420px) {
     .hackinbox-picture__img {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -134,40 +135,40 @@
 
 .hackinbox-form__input,
 .hackinbox-form__button {
-    display: block;
-    width: 100%;
-    border-radius: 4px;
+    display: block !important;
+    width: 100% !important;
+    border-radius: 4px !important;
     line-height: 16px !important;
 }
 
 .hackinbox-form__input {
-    border: 1px solid #959595;
-    color: #291f1f;
-    box-shadow: 0 1px 0 0 #d6d6d6;
-    padding: 8px 10px;
-    min-width: 190px;
-    height: auto;
+    border: 1px solid #959595 !important;
+    color: #291f1f !important;
+    box-shadow: 0 1px 0 0 #d6d6d6 !important;
+    padding: 8px 10px !important;
+    min-width: 190px !important;
+    height: auto !important;
     margin: 0 !important;
     font-size: 16px !important;
-    background-color: #fff;
-    font-weight: 500;
+    background-color: #fff !important;
+    font-weight: 500 !important;
 }
 
 .hackinbox-form__button {
     white-space: nowrap;
-    overflow: hidden;
+    overflow: hidden !important;
     color: #fff !important;
-    font-size: 24px;
+    font-size: 24px !important;
     background-color: #ccc;
-    padding: 12px 0;
-    text-decoration: none;
-    box-shadow: 0 3px 3px #8c8c8c;
-    text-align: center;
+    padding: 12px 0 !important;
+    text-decoration: none !important;
+    box-shadow: 0 3px 3px #8c8c8c !important;
+    text-align: center !important;
     border: none !important;
-    font-weight: 700;
-    height: auto;
+    font-weight: 700 !important;
+    height: auto !important;
     outline: none !important;
-    margin: 15px 0 0;
+    margin: 15px 0 0 !important;
 }
 
 .hackinbox-form__button:hover {
@@ -175,14 +176,13 @@
 }
 
 .hackinbox-form__button:active {
-    margin: 17px 0 -2px;
-    box-shadow: 0 3px 3px #8c8c8c;
+    margin: 17px 0 -2px !important;
 }
 
 .hackinbox-form__button:disabled {
     cursor: default !important;
-    position: relative;
-    box-shadow: none;
+    position: relative !important;
+    box-shadow: none !important;
     color: transparent !important;
 }
 
@@ -218,7 +218,7 @@
 }
 
 .hackinbox-form__userphone-error {
-    border-color: #ff6060;
+    border-color: #ff6060 !important;
 }
 
 .hackinbox-form__userphone-error+.hackinbox-form__message-error {
