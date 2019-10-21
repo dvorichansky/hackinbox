@@ -238,6 +238,12 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <h3 class="mb-4">Форма</h3>
 
           <div class="form-group">
+            <label for="hackinbox_form__configuration_file">Путь к конфигурационному файлу отправки заявки на CRM</label>
+            <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['configuration_file'] ?>" name="hackinbox_form__configuration_file" id="hackinbox_form__configuration_file">
+            <small class="form-text text-muted">Формат: /file_lead.php</small>
+          </div>
+
+          <div class="form-group">
             <label for="hackinbox_form__name">Название формы</label>
             <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['name'] ?>" name="hackinbox_form__name" id="hackinbox_form__name">
           </div>

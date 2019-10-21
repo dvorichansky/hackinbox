@@ -32,7 +32,7 @@
 
       setTimeout(() => {
         hackinboxRender(data);
-        hackinboxForm();
+        hackinboxForm(data.hackinbox_form.configuration_file);
         setTimeInitializeClock(data.hackinbox_counter.deadline);
         hackinboxEvent();
       }, +data.display_delay * 1000);
@@ -217,7 +217,7 @@
    * form
    * (used jQuery)
    */
-  function hackinboxForm() {
+  function hackinboxForm(configuration_file) {
     const phone = $(".hackinbox-form [name=phone]");
     const submit = $(".hackinbox-form [type=submit]");
     const inputPhone = document.querySelector(".hackinbox-form [name=phone]");
@@ -241,7 +241,7 @@
 
       $.ajax({
         type: "POST",
-        url: `${url_widget}hackinbox_create_bitrix_lead.php`,
+        url: configuration_file,
         data: $(target).serialize(),
         dataType: "html",
         beforeSend: function() {},

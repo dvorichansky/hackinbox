@@ -75,6 +75,9 @@ foreach ($_POST as $key => $value) {
       $data['hackinbox_counter']['background_color'] = $str;
       break;
 
+    case 'hackinbox_form__configuration_file':
+      $data['hackinbox_form']['configuration_file'] = $str;
+      break;
     case 'hackinbox_form__name':
       $data['hackinbox_form']['name'] = $str;
       break;
