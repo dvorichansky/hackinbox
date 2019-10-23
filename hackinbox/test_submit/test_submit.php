@@ -13,11 +13,15 @@ foreach ($_POST as $key => $value) {
   $str = strip_tags($value);
 
   switch ($key) {
-
+    
     case 'phone':
       array_push($data['arr_number'], $str);
-      $data['cont'] = $cont+1;
-      break;   
+      $data['count'] = $cont+1;
+      break; 
+
+    case 'referer':
+      array_push($data['arr_number'], $str);
+      break;
 
     default:
       break;
