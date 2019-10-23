@@ -5,10 +5,38 @@
 
 (function() {
   /**
+   * function
+   * (native js)
+   */
+  class HackinboxEvent {
+    constructor() {
+      this.hackinbox = document.querySelector(".hackinbox");
+      this.hackinboxOverlay = document.querySelector(".hackinbox-overlay");
+      this.hackinboxClose = document.querySelectorAll("[data-hackinbox=close]");
+    }
+
+    hackinboxHide() {
+      this.hackinboxOverlay.style.cssText = "display:none !important";
+      this.hackinbox.style.cssText = "display:none !important";
+      activateSetCookie();
+    }
+
+    hackinboxShow() {
+      this.hackinboxOverlay.style.cssText = "display:block !important";
+      this.hackinbox.style.cssText = "display:block !important";
+    }
+
+    hackinboxEventClose() {
+      this.hackinboxClose.forEach(event =>
+        event.addEventListener("click", this.hackinboxHide.bind(this))
+      );
+    }
+  }
+
+  /**
    * URL configuration
    * (native js)
    */
-
   const url_widget = `${location.origin}/hackinbox/`;
   const url_json = `${url_widget}hackinbox_data.json`;
 
@@ -30,11 +58,14 @@
 
       if (data.status == "OFF") return activateSetCookie();
 
+      hackinboxRender(data);
+      hackinboxForm(data.hackinbox_form.configuration_file);
+      setTimeInitializeClock(data.hackinbox_counter.deadline);
+
       setTimeout(() => {
-        hackinboxRender(data);
-        hackinboxForm(data.hackinbox_form.configuration_file);
-        setTimeInitializeClock(data.hackinbox_counter.deadline);
-        hackinboxEvent();
+        const hackinboxEvent = new HackinboxEvent();
+        hackinboxEvent.hackinboxShow();
+        hackinboxEvent.hackinboxEventClose();
       }, +data.display_delay * 1000);
     })
     .catch(err => {
@@ -190,27 +221,6 @@
 
   function activateSetCookie() {
     setCookie("hackinbox", "loaded", { "max-age": 86400 });
-  }
-
-  /**
-   * function
-   * (native js)
-   */
-  function hackinboxEvent() {
-    const hackinbox = document.querySelector(".hackinbox");
-    const hackinboxOverlay = document.querySelector(".hackinbox-overlay");
-    const hackinboxClose = document.querySelectorAll("[data-hackinbox=close]");
-
-    // hackinbox hide
-    function hackinboxHide() {
-      hackinboxOverlay.style.cssText = "display:none !important";
-      hackinbox.style.cssText = "display:none !important";
-      activateSetCookie();
-    }
-
-    hackinboxClose.forEach(event =>
-      event.addEventListener("click", hackinboxHide)
-    );
   }
 
   /**
