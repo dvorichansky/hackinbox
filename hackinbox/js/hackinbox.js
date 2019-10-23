@@ -121,7 +121,7 @@
                           location.href
                         }">
                         <input 
-                          type="text" 
+                          type="tel" 
                           name="phone" 
                           class="hackinbox-form__input hackinbox-form__userphone" 
                           value="${form.mask}"
@@ -248,19 +248,6 @@
       phone.removeClass("hackinbox-form__userphone-error");
 
       submit.prop("disabled", true);
-
-      $.ajax({
-        type: "POST",
-        url: `${url_widget}test_submit/test_submit.php`,
-        data: $(target).serialize(),
-        dataType: "html",
-        success: function() {
-          console.log("Test passed!");
-        },
-        error: function() {
-          console.log("Test failed!");
-        }
-      });
 
       $.ajax({
         type: "POST",
