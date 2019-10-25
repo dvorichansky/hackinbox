@@ -117,9 +117,8 @@
                 
                     <form class="hackinbox-form" action="POST">
                         <input type="hidden" name="form" value="${form.name}">
-                        <input type="hidden" name="referer" value="${
-                          location.href
-                        }">
+                        <input type="hidden" name="referer" value="${location.hostname +
+                          location.pathname}">
                         <input 
                           type="tel" 
                           name="phone" 
