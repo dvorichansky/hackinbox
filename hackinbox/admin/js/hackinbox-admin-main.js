@@ -63,18 +63,22 @@ document.addEventListener("submit", function(e) {
 // Form Image
 document.addEventListener("submit", function(e) {
   const target = e.target;
-  if (!target.classList.contains("form-image")) {
+
+  let inputLang = target.querySelector(".input-lang");
+  let lang = inputLang ? inputLang.value : '';
+
+  if (!target.classList.contains(`form-image__${lang}`)) {
     return;
   }
   e.preventDefault();
 
   const data = new FormData();
 
-  const customFile = jQuery("#customFile")[0].files[0];
+  const customFile = jQuery(`#customFile__${lang}`)[0].files[0];
   data.append("userfile", customFile);
 
   jQuery.ajax({
-    url: "replacement_image.php",
+    url: `replacement_image/replacement_image__${lang}.php`,
     data: data,
     cache: false,
     contentType: false,
@@ -89,7 +93,7 @@ document.addEventListener("submit", function(e) {
   });
 });
 
-$("#customFile").on("change", function() {
+$(".custom-file-input").on("change", function() {
   const fileName = $(this).val();
   $(this)
     .next(".custom-file-label")

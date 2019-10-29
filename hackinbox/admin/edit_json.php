@@ -26,84 +26,136 @@ foreach ($_POST as $key => $value) {
       $data['status'] = $str;
       break;
 
-    case 'hackinbox_content__title':
-      $data['hackinbox_content']['title'] = $str;
+    case 'content__title__ru':
+      $data['content']['title']['ru'] = $str;
+      break;
+    case 'content__title__uk':
+      $data['content']['title']['uk'] = $str;
       break;
 
-    case 'hackinbox_content__title_color':
-      $data['hackinbox_content']['title_color'] = $str;
+    case 'content__title_color':
+      $data['content']['title_color'] = $str;
       break;
 
-    case 'hackinbox_content__background_color':
-      $data['hackinbox_content']['background_color'] = $str;
+    case 'content__background_color':
+      $data['content']['background_color'] = $str;
       break;
 
-    case 'hackinbox_appearance__box_shadow':
+    case 'appearance__box_shadow':
       if ($str == "strong") {
-        $data['hackinbox_appearance']['box_shadow'] = "0 21px 32px 0 rgba(0, 0, 0, 0.25)";
+        $data['appearance']['box_shadow'] = "0 21px 32px 0 rgba(0, 0, 0, 0.25)";
       } else if ($str == "faint") {
-        $data['hackinbox_appearance']['box_shadow'] = "0 10px 15px 0 rgba(0, 0, 0, 0.15)";
+        $data['appearance']['box_shadow'] = "0 10px 15px 0 rgba(0, 0, 0, 0.15)";
       } else if ($str == "without") {
-        $data['hackinbox_appearance']['box_shadow'] = "";
+        $data['appearance']['box_shadow'] = "";
       }
       break;
 
-    case 'hackinbox_appearance__overlay__background_color':
-      $data['hackinbox_appearance']['overlay']['background_color'] = $str;
+    case 'appearance__overlay__background_color':
+      $data['appearance']['overlay']['background_color'] = $str;
       break;
 
-    case 'hackinbox_appearance__overlay__opacity':
-      $data['hackinbox_appearance']['overlay']['opacity'] = $str;
+    case 'appearance__overlay__opacity':
+      $data['appearance']['overlay']['opacity'] = $str;
       break;
 
-    case 'hackinbox_counter__title':
-      $data['hackinbox_counter']['title'] = $str;
+    case 'counter__title__ru':
+      $data['counter']['title']['ru'] = $str;
       break;
-    case 'hackinbox_counter__deadline__hours':
-      $data['hackinbox_counter']['deadline']['hours'] = $str;
-      break;
-    case 'hackinbox_counter__deadline__minutes':
-      $data['hackinbox_counter']['deadline']['minutes'] = $str;
-      break;
-    case 'hackinbox_counter__deadline__seconds':
-      $data['hackinbox_counter']['deadline']['seconds'] = $str;
-      break;
-    case 'hackinbox_counter__color':
-      $data['hackinbox_counter']['color'] = $str;
-      break;
-    case 'hackinbox_counter__background_color':
-      $data['hackinbox_counter']['background_color'] = $str;
+    case 'counter__title__uk':
+      $data['counter']['title']['uk'] = $str;
       break;
 
-    case 'hackinbox_form__configuration_file':
-      $data['hackinbox_form']['configuration_file'] = $str;
+    case 'counter__deadline__hours':
+      $data['counter']['deadline']['hours'] = $str;
       break;
-    case 'hackinbox_form__name':
-      $data['hackinbox_form']['name'] = $str;
+    case 'counter__deadline__minutes':
+      $data['counter']['deadline']['minutes'] = $str;
       break;
-    case 'hackinbox_form__placeholder':
-      $data['hackinbox_form']['placeholder'] = $str;
+    case 'counter__deadline__seconds':
+      $data['counter']['deadline']['seconds'] = $str;
       break;
-    case 'hackinbox_form__mask':
-      $data['hackinbox_form']['mask'] = $str;
+
+    case 'counter__deadline__hours_text__ru':
+      $data['counter']['deadline']['hours_text']['ru'] = $str;
       break;
-    case 'hackinbox_form__button':
-      $data['hackinbox_form']['button'] = $str;
+    case 'counter__deadline__hours_text__uk':
+      $data['counter']['deadline']['hours_text']['uk'] = $str;
       break;
-    case 'hackinbox_form__button_color':
-      $data['hackinbox_form']['button_color'] = $str;
+
+    case 'counter__deadline__minutes_text__ru':
+      $data['counter']['deadline']['minutes_text']['ru'] = $str;
       break;
-    case 'hackinbox_form__userphone_message_error':
-      $data['hackinbox_form']['userphone_message_error'] = $str;
+    case 'counter__deadline__minutes_text__uk':
+      $data['counter']['deadline']['minutes_text']['uk'] = $str;
       break;
-    case 'hackinbox_form__success_text':
-      $data['hackinbox_form']['success_text'] = $str;
+
+    case 'counter__deadline__seconds_text__ru':
+      $data['counter']['deadline']['seconds_text']['ru'] = $str;
       break;
-    case 'hackinbox_form__success_button':
-      $data['hackinbox_form']['success_button'] = $str;
+    case 'counter__deadline__seconds_text__uk':
+      $data['counter']['deadline']['seconds_text']['uk'] = $str;
       break;
-    case 'hackinbox_form__success_button_color':
-      $data['hackinbox_form']['success_button_color'] = $str;
+
+    case 'counter__color':
+      $data['counter']['color'] = $str;
+      break;
+    case 'counter__background_color':
+      $data['counter']['background_color'] = $str;
+      break;
+
+    case 'form__configuration_file':
+      $data['form']['configuration_file'] = $str;
+      break;
+
+    case 'form__name__ru':
+      $data['form']['name']['ru'] = $str;
+      break;
+    case 'form__name__uk':
+      $data['form']['name']['uk'] = $str;
+      break;
+
+    case 'form__placeholder':
+      $data['form']['placeholder'] = $str;
+      break;
+    case 'form__mask':
+      $data['form']['mask'] = $str;
+      break;
+
+    case 'form__button__ru':
+      $data['form']['button']['ru'] = $str;
+      break;
+    case 'form__button__uk':
+      $data['form']['button']['uk'] = $str;
+      break;
+
+    case 'form__button_color':
+      $data['form']['button_color'] = $str;
+      break;
+
+    case 'form__userphone_message_error__ru':
+      $data['form']['userphone_message_error']['ru'] = $str;
+      break;
+    case 'form__userphone_message_error__uk':
+      $data['form']['userphone_message_error']['uk'] = $str;
+      break;
+
+    case 'form__success_text__ru':
+      $data['form']['success_text']['ru'] = $str;
+      break;
+    case 'form__success_text__uk':
+      $data['form']['success_text']['uk'] = $str;
+      break;
+
+    case 'form__success_button__ru':
+      $data['form']['success_button']['ru'] = $str;
+      break;
+    case 'form__success_button__uk':
+      $data['form']['success_button']['uk'] = $str;
+      break;
+
+    case 'form__success_button_color':
+      $data['form']['success_button_color'] = $str;
       break;
 
     case 'display_delay':

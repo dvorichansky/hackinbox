@@ -45,78 +45,98 @@
    * (native js)
    */
   fetch(url_json)
-    .then(response => {
-      if (response.status === 200) {
-        console.log("Successful connection!");
-        return response.json();
-      } else if (response.status === 300) {
-        console.log("Queue...");
-      }
-    })
+    .then(response => connectTrack(response))
     .then(data => {
-      if (checkForComplianceWithTheExceptionPage(data.exception_pages)) return;
-
-      if (data.status == "OFF") return activateSetCookie();
-
-      hackinboxRender(data);
-      hackinboxForm(data.hackinbox_form.configuration_file);
-      setTimeInitializeClock(data.hackinbox_counter.deadline);
-
-      setTimeout(() => {
-        const hackinboxEvent = new HackinboxEvent();
-        hackinboxEvent.hackinboxShow();
-        hackinboxEvent.hackinboxEventClose();
-      }, +data.display_delay * 1000);
+      parsingData(data);
     })
     .catch(err => {
       throw err;
     });
+
+  function connectTrack(response) {
+    if (response.status === 200) {
+      console.log("Successful connection!");
+      return response.json();
+    } else if (response.status === 300) {
+      console.log("Queue...");
+    }
+  }
+
+  function parsingData(data) {
+    if (checkForComplianceWithTheExceptionPage(data.exception_pages)) return;
+
+    if (data.status == "OFF") return activateSetCookie();
+
+    hackinboxRender(data);
+    hackinboxForm(data.form.configuration_file);
+    setTimeInitializeClock(data.counter.deadline);
+
+    setTimeout(() => {
+      const hackinboxEvent = new HackinboxEvent();
+      hackinboxEvent.hackinboxShow();
+      hackinboxEvent.hackinboxEventClose();
+    }, +data.display_delay * 1000);
+  }
+
+  function langDefinition() {
+    const lang = document.getElementsByTagName("html")[0].lang;
+    return lang === "uk" ? "uk" : "ru"; // "ru" default language
+  }
 
   /**
    * render html
    * (native js)
    */
   function hackinboxRender(data) {
-    const content = data.hackinbox_content;
-    const form = data.hackinbox_form;
-    const counter = data.hackinbox_counter;
-    const appearance = data.hackinbox_appearance;
+    const lang = langDefinition();
+    const { appearance, content, counter, form } = data;
+    const { deadline } = counter;
 
     document.body.insertAdjacentHTML(
       "beforeend",
       `<div class="hackinbox">
             <div class="hackinbox-container">
                 <div class="hackinbox-picture">
-                    <img class="hackinbox-picture__img" src="${url_widget}img/hackinbox_picture.png" />
+                    <img class="hackinbox-picture__img" src="${url_widget}img/hackinbox_picture__${lang}.png" />
                 </div>
                 <div class="hackinbox-content">                                  
                     <a href="javascript:void(0)" class="hackinbox-close" data-hackinbox="close">×</a>
-                    <div class="hackinbox-content__title">${content.title}</div>
+                    <div class="hackinbox-content__title">${
+                      content.title[lang]
+                    }</div>
 
                     <div class="hackinbox-counter">
                         <div class="hackinbox-counter__title">${
-                          counter.title
+                          counter.title[lang]
                         }</div>
                         <div class="hackinbox-counter-clock">
                             <div class="hackinbox-counter-clock__dig">
                                 <div class="hackinbox-counter-clock__number hackinbox-counter-clock__number-hours">00</div>
-                                <div class="hackinbox-counter-clock__name">часы</div>
+                                <div class="hackinbox-counter-clock__name">${
+                                  deadline.hours_text[lang]
+                                }</div>
                             </div>
                             <div class="hackinbox-counter-clock__dz"></div>
                             <div class="hackinbox-counter-clock__dig">
                                 <div class="hackinbox-counter-clock__number hackinbox-counter-clock__number-minutes">23</div>
-                                <div class="hackinbox-counter-clock__name">минуты</div>
+                                <div class="hackinbox-counter-clock__name">${
+                                  deadline.minutes_text[lang]
+                                }</div>
                             </div>
                             <div class="hackinbox-counter-clock__dz"></div>
                             <div class="hackinbox-counter-clock__dig">
                                 <div class="hackinbox-counter-clock__number hackinbox-counter-clock__number-seconds">58</div>
-                                <div class="hackinbox-counter-clock__name">секунды</div>
+                                <div class="hackinbox-counter-clock__name">${
+                                  deadline.seconds_text[lang]
+                                }</div>
                             </div>
                         </div>
                     </div>
                 
                     <form class="hackinbox-form" action="POST">
-                        <input type="hidden" name="form" value="${form.name}">
+                        <input type="hidden" name="form" value="${
+                          form.name[lang]
+                        }">
                         <input type="hidden" name="referer" value="${location.hostname +
                           location.pathname}">
                         <input 
@@ -127,21 +147,21 @@
                           placeholder="${form.placeholder}" 
                           maxlength="34">
                         <small class="hackinbox-form__message-error">${
-                          form.userphone_message_error
+                          form.userphone_message_error[lang]
                         }</small>
                         <button 
                           type="submit" 
                           class="hackinbox-form__button"
-                        >${form.button}</button>  
+                        >${form.button[lang]}</button>  
                         <div class="hackinbox-form__success">
                             <div class="hackinbox-form__success-text">${
-                              form.success_text
+                              form.success_text[lang]
                             }</div>
                             <button 
                               type="button" 
                               class="hackinbox-form__button hackinbox-form__success-button" 
                               data-hackinbox="close">${
-                                form.success_button
+                                form.success_button[lang]
                               }</button>
                         </div>                      
                     </form>                    
@@ -362,7 +382,7 @@
       console.log(
         result
           ? "Page excluded for hackinbox"
-          : "The page is allowed to display hackbox"
+          : "The page is allowed to display hackinbox"
       );
       return result;
     }

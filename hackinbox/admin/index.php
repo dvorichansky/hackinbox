@@ -37,20 +37,48 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 </button>
               </div>
               <div class="modal-body">
-                <form enctype="multipart/form-data" action="" method="POST" class="form-image mb-3" name="formImage">
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__ru mb-3" name="formImage">
                   <div class="form-group">
-                    <div class="custom-file">
-                      <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
-                      <input type="file" class="custom-file-input" id="customFile" name="userfile" required>
-                      <label class="custom-file-label" for="customFile">Выберите файл</label>
-                      <small class="form-text text-muted">Формат - <span class="badge badge-primary">png</span>, размер - <span class="badge badge-primary">до 200 кб</span>, разрешение - <span class="badge badge-primary">650x500</span></small>
-                      <div class="invalid-feedback">Неверный формат файла</div>
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-lang">
+                        <span class="input-group-text">ru</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+                        <input type="hidden" class="input-lang" name="lang" value="ru" />
+                        <input type="file" class="custom-file-input" id="customFile__ru" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__ru">Выберите файл</label>
+                        <div class="invalid-feedback">Неверный формат файла</div>
+                      </div>
+                      <div class="text-center ml-2">
+                        <button type="submit" class="btn btn-primary">Заменить</button>
+                      </div>
                     </div>
                   </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Заменить</button>
+                </form>
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__uk mb-3" name="formImage">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-lang">
+                        <span class="input-group-text">uk</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+                        <input type="hidden" class="input-lang" name="lang" value="uk" />
+                        <input type="file" class="custom-file-input" id="customFile__uk" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__uk">Выберите файл</label>
+                        <div class="invalid-feedback">Неверный формат файла</div>
+                      </div>
+                      <div class="text-center ml-2">
+                        <button type="submit" class="btn btn-primary">Заменить</button>
+                      </div>
+                    </div>
                   </div>
                 </form>
+                <hr>
+                <div class="text-center">
+                  <small class="form-text text-muted">Формат - <span class="badge badge-primary">png</span>, размер - <span class="badge badge-primary">до 200 кб</span>, разрешение - <span class="badge badge-primary">650x500</span></small>
+                </div>
               </div>
             </div>
           </div>
@@ -116,29 +144,47 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
           <h3 class="mb-4">Текст и внешний вид виджета</h3>
 
-          <div class="form-group">
-            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#widgetPreview">Открыть предпросмотр</button>
-          </div>
+
 
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <img src="../img/hackinbox_picture.png" alt="">
+                <button type="button" class="btn btn-outline-dark w-100" data-toggle="modal" data-target="#widgetPreview">Открыть предпросмотр</button>
               </div>
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-2 justify-content-center">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="border-radius: 0.25rem;">ru</span>
+                    </div>
+                  </div>
+                  <img src="../img/hackinbox_picture__ru.png" alt="">
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-2 justify-content-center">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="border-radius: 0.25rem;">uk</span>
+                    </div>
+                  </div>
+                  <img src="../img/hackinbox_picture__uk.png" alt="">
+                </div>
+              </div>
+              <hr>
               <div class="form-group">
                 <button type="button" class="btn btn-outline-primary w-100" data-toggle="modal" data-target="#mainImage">Заменить зображение</button>
               </div>
             </div>
             <div class="col-md-8">
               <div class="form-group">
-                <label for="hackinbox_content__background_color">Цвет фона</label>
-                <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_content']['background_color'] ?>" name="hackinbox_content__background_color" id="hackinbox_content__background_color">
+                <label for="content__background_color">Цвет фона</label>
+                <input type="text" class="form-control pick-a-color" value="<?php echo $data['content']['background_color'] ?>" name="content__background_color" id="content__background_color">
               </div>
               <div class="form-group">
-                <label for="hackinbox_appearance__box_shadow">Тень от окна</label>
-                <select class="form-control" name="hackinbox_appearance__box_shadow" id="hackinbox_appearance__box_shadow">
+                <label for="appearance__box_shadow">Тень от окна</label>
+                <select class="form-control" name="appearance__box_shadow" id="appearance__box_shadow">
                   <?php
-                      $box_shadow = $data['hackinbox_appearance']['box_shadow'];
+                      $box_shadow = $data['appearance']['box_shadow'];
 
                       if ($box_shadow == "0 21px 32px 0 rgba(0, 0, 0, 0.25)") {
                         echo "<option>strong</option>
@@ -160,14 +206,14 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="hackinbox_appearance__overlay__background_color">Цвет фона при затемнении</label>
-                    <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_appearance']['overlay']['background_color'] ?>" name="hackinbox_appearance__overlay__background_color" id="hackinbox_appearance__overlay__background_color">
+                    <label for="appearance__overlay__background_color">Цвет фона при затемнении</label>
+                    <input type="text" class="form-control pick-a-color" value="<?php echo $data['appearance']['overlay']['background_color'] ?>" name="appearance__overlay__background_color" id="appearance__overlay__background_color">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="hackinbox_appearance__overlay__opacity">Прозрачность фона</label>
-                    <input type="range" class="custom-range mt-2" min="0" max="1" step="0.1" value="<?php echo $data['hackinbox_appearance']['overlay']['opacity'] ?>" name="hackinbox_appearance__overlay__opacity" id="hackinbox_appearance__overlay__opacity">
+                    <label for="appearance__overlay__opacity">Прозрачность фона</label>
+                    <input type="range" class="custom-range mt-2" min="0" max="1" step="0.1" value="<?php echo $data['appearance']['overlay']['opacity'] ?>" name="appearance__overlay__opacity" id="appearance__overlay__opacity">
                   </div>
                 </div>
               </div>
@@ -177,14 +223,25 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <div class="row">
             <div class="col-md-9">
               <div class="form-group">
-                <label for="hackinbox_content__title">Текст предложения</label>
-                <input type="text" class="form-control" value="<?php echo $data['hackinbox_content']['title'] ?>" name="hackinbox_content__title" id="hackinbox_content__title">
+                <label>Текст предложения</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend input-group-lang" for="content__title__ru">
+                    <span class="input-group-text">ru</span>
+                  </div>
+                  <input type="text" class="form-control" value="<?php echo $data['content']['title']['ru'] ?>" name="content__title__ru" id="content__title__ru">
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend input-group-lang" for="content__title__uk">
+                    <span class="input-group-text">uk</span>
+                  </div>
+                  <input type="text" class="form-control" value="<?php echo $data['content']['title']['uk'] ?>" name="content__title__uk" id="content__title__uk">
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="hackinbox_content__title_color">Цвет текста</label>
-                <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_content']['title_color'] ?>" name="hackinbox_content__title_color" id="hackinbox_content__title_color">
+                <label for="content__title_color">Цвет текста</label>
+                <input type="text" class="form-control pick-a-color" value="<?php echo $data['content']['title_color'] ?>" name="content__title_color" id="content__title_color">
               </div>
             </div>
           </div>
@@ -196,8 +253,19 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <h3 class="mb-4">Таймер</h3>
 
           <div class="form-group">
-            <label for="hackinbox_counter__title">Текст над таймером</label>
-            <input type="text" class="form-control" value="<?php echo $data['hackinbox_counter']['title'] ?>" name="hackinbox_counter__title" id="hackinbox_counter__title">
+            <label for="counter__title">Текст над таймером</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-group-lang" for="counter__title__ru">
+                <span class="input-group-text">ru</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['counter']['title']['ru'] ?>" name="counter__title__ru" id="counter__title__ru">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend input-group-lang" for="counter__title__uk">
+                <span class="input-group-text">uk</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['counter']['title']['uk'] ?>" name="counter__title__uk" id="counter__title__uk">
+            </div>
           </div>
 
           <div class="row">
@@ -205,28 +273,70 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
               <label>Время до завершения акции</label>
               <div class="row">
                 <div class="col form-group">
-                  <input type="number" class="form-control" value="<?php echo $data['hackinbox_counter']['deadline']['hours'] ?>" name="hackinbox_counter__deadline__hours" id="hackinbox_counter__deadline__hours">
-                  <small class="form-text text-muted">Часов</small>
+                  <input type="number" class="form-control" value="<?php echo $data['counter']['deadline']['hours'] ?>" name="counter__deadline__hours" id="counter__deadline__hours">
+                  <small class="form-text text-muted mb-2">Часов</small>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">ru</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['hours_text']['ru'] ?>" name="counter__deadline__hours_text__ru" id="counter__deadline__hours_text__ru">
+                  </div>
+
+                  <div class="input-group">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">uk</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['hours_text']['uk'] ?>" name="counter__deadline__hours_text__uk" id="counter__deadline__hours_text__uk">
+                  </div>
                 </div>
                 <div class="col form-group">
-                  <input type="number" class="form-control" value="<?php echo $data['hackinbox_counter']['deadline']['minutes'] ?>" name="hackinbox_counter__deadline__minutes" id="hackinbox_counter__deadline__minutes">
-                  <small class="form-text text-muted">Минут</small>
+                  <input type="number" class="form-control" value="<?php echo $data['counter']['deadline']['minutes'] ?>" name="counter__deadline__minutes" id="counter__deadline__minutes">
+                  <small class="form-text text-muted mb-2">Минут</small>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">ru</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['minutes_text']['ru'] ?>" name="counter__deadline__minutes_text__ru" id="counter__deadline__minutes_text__ru">
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">uk</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['minutes_text']['uk'] ?>" name="counter__deadline__minutes_text__uk" id="counter__deadline__minutes_text__uk">
+                  </div>
                 </div>
                 <div class="col form-group">
-                  <input type="number" class="form-control" value="<?php echo $data['hackinbox_counter']['deadline']['seconds'] ?>" name="hackinbox_counter__deadline__seconds" id="hackinbox_counter__deadline__seconds">
-                  <small class="form-text text-muted">Секунд</small>
+                  <input type="number" class="form-control" value="<?php echo $data['counter']['deadline']['seconds'] ?>" name="counter__deadline__seconds" id="counter__deadline__seconds">
+                  <small class="form-text text-muted mb-2">Секунд</small>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">ru</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['seconds_text']['ru'] ?>" name="counter__deadline__seconds_text__ru" id="counter__deadline__seconds_text__ru">
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend input-group-lang">
+                      <span class="input-group-text">uk</span>
+                    </div>
+                    <input type="text" class="form-control" value="<?php echo $data['counter']['deadline']['seconds_text']['uk'] ?>" name="counter__deadline__seconds_text__uk" id="counter__deadline__seconds_text__uk">
+                  </div>
                 </div>
               </div>
-
             </div>
+            
             <div class="col-md-6">
               <div class="form-group">
-                <label for="hackinbox_counter__color">Цвет цифр</label>
-                <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_counter']['color'] ?>" name="hackinbox_counter__color" id="hackinbox_counter__color">
+                <label for="counter__color">Цвет цифр</label>
+                <input type="text" class="form-control pick-a-color" value="<?php echo $data['counter']['color'] ?>" name="counter__color" id="counter__color">
               </div>
               <div class="form-group">
-                <label for="hackinbox_counter__background_color">Цвет фона</label>
-                <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_counter']['background_color'] ?>" name="hackinbox_counter__background_color" id="hackinbox_counter__background_color">
+                <label for="counter__background_color">Цвет фона</label>
+                <input type="text" class="form-control pick-a-color" value="<?php echo $data['counter']['background_color'] ?>" name="counter__background_color" id="counter__background_color">
               </div>
             </div>
           </div>
@@ -238,58 +348,114 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <h3 class="mb-4">Форма</h3>
 
           <div class="form-group">
-            <label for="hackinbox_form__configuration_file">Путь к конфигурационному файлу отправки заявки на CRM</label>
-            <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['configuration_file'] ?>" name="hackinbox_form__configuration_file" id="hackinbox_form__configuration_file">
+            <label for="form__configuration_file">Путь к конфигурационному файлу отправки заявки на CRM</label>
+            <input type="text" class="form-control" value="<?php echo $data['form']['configuration_file'] ?>" name="form__configuration_file" id="form__configuration_file">
             <small class="form-text text-muted">Формат: /file_lead.php</small>
           </div>
 
           <div class="form-group">
-            <label for="hackinbox_form__name">Название формы</label>
-            <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['name'] ?>" name="hackinbox_form__name" id="hackinbox_form__name">
+            <label for="form__name">Название формы</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-group-lang" for="form__name__ru">
+                <span class="input-group-text">ru</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['name']['ru'] ?>" name="form__name__ru" id="form__name__ru">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend input-group-lang" for="form__name__uk">
+                <span class="input-group-text">uk</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['name']['uk'] ?>" name="form__name__uk" id="form__name__uk">
+            </div>
           </div>
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__placeholder">Заглушка номера (Placeholder)</label>
-              <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['placeholder'] ?>" name="hackinbox_form__placeholder" id="hackinbox_form__placeholder">
+              <label for="form__placeholder">Заглушка номера (Placeholder)</label>
+              <input type="text" class="form-control" value="<?php echo $data['form']['placeholder'] ?>" name="form__placeholder" id="form__placeholder">
             </div>
 
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__mask">Маска номера (Mask)</label>
-              <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['mask'] ?>" name="hackinbox_form__mask" id="hackinbox_form__mask">
+              <label for="form__mask">Маска номера (Mask)</label>
+              <input type="text" class="form-control" value="<?php echo $data['form']['mask'] ?>" name="form__mask" id="form__mask">
             </div>
           </div>
           <div class="row">
+
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__button">Текст кнопки</label>
-              <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['button'] ?>" name="hackinbox_form__button" id="hackinbox_form__button">
+              <label for="form__button">Текст кнопки</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend input-group-lang" for="form__button__ru">
+                  <span class="input-group-text">ru</span>
+                </div>
+                <input type="text" class="form-control" value="<?php echo $data['form']['button']['ru'] ?>" name="form__button__ru" id="form__button__ru">
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend input-group-lang" for="form__button__uk">
+                  <span class="input-group-text">uk</span>
+                </div>
+                <input type="text" class="form-control" value="<?php echo $data['form']['button']['uk'] ?>" name="form__button__uk" id="form__button__uk">
+              </div>
             </div>
 
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__button_color">Цвет кнопки</label>
-              <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_form']['button_color'] ?>" name="hackinbox_form__button_color" id="hackinbox_form__button_color">
+              <label for="form__button_color">Цвет кнопки</label>
+              <input type="text" class="form-control pick-a-color" value="<?php echo $data['form']['button_color'] ?>" name="form__button_color" id="form__button_color">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="hackinbox_form__userphone_message_error">Текст ошибки ввода номера</label>
-            <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['userphone_message_error'] ?>" name="hackinbox_form__userphone_message_error" id="hackinbox_form__userphone_message_error">
+            <label for="form__userphone_message_error">Текст ошибки ввода номера</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-group-lang" for="form__userphone_message_error__ru">
+                <span class="input-group-text">ru</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['userphone_message_error']['ru'] ?>" name="form__userphone_message_error__ru" id="form__userphone_message_error__ru">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend input-group-lang" for="form__userphone_message_error__uk">
+                <span class="input-group-text">uk</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['userphone_message_error']['uk'] ?>" name="form__userphone_message_error__uk" id="form__userphone_message_error__uk">
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="hackinbox_form__success_text">Текст после отправки заявки</label>
-            <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['success_text'] ?>" name="hackinbox_form__success_text" id="hackinbox_form__success_text">
+            <label for="form__success_text">Текст после отправки заявки</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend input-group-lang" for="form__success_text__ru">
+                <span class="input-group-text">ru</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['success_text']['ru'] ?>" name="form__success_text__ru" id="form__success_text__ru">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend input-group-lang" for="form__success_text__uk">
+                <span class="input-group-text">uk</span>
+              </div>
+              <input type="text" class="form-control" value="<?php echo $data['form']['success_text']['uk'] ?>" name="form__success_text__uk" id="form__success_text__uk">
+            </div>
           </div>
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__success_button">Текст кнопки согласия после отправки заявки</label>
-              <input type="text" class="form-control" value="<?php echo $data['hackinbox_form']['success_button'] ?>" name="hackinbox_form__success_button" id="hackinbox_form__success_button">
+              <label for="form__success_button">Текст кнопки согласия после отправки заявки</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend input-group-lang" for="form__success_button__ru">
+                  <span class="input-group-text">ru</span>
+                </div>
+                <input type="text" class="form-control" value="<?php echo $data['form']['success_button']['ru'] ?>" name="form__success_button__ru" id="form__success_button__ru">
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend input-group-lang" for="form__success_button__uk">
+                  <span class="input-group-text">uk</span>
+                </div>
+                <input type="text" class="form-control" value="<?php echo $data['form']['success_button']['uk'] ?>" name="form__success_button__uk" id="form__success_button__uk">
+              </div>
             </div>
 
             <div class="form-group col-md-6">
-              <label for="hackinbox_form__success_button_color">Цвет кнопки согласия после отправки заявки</label>
-              <input type="text" class="form-control pick-a-color" value="<?php echo $data['hackinbox_form']['success_button_color'] ?>" name="hackinbox_form__success_button_color" id="hackinbox_form__success_button_color">
+              <label for="form__success_button_color">Цвет кнопки согласия после отправки заявки</label>
+              <input type="text" class="form-control pick-a-color" value="<?php echo $data['form']['success_button_color'] ?>" name="form__success_button_color" id="form__success_button_color">
             </div>
           </div>
 
@@ -302,7 +468,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           <div class="form-group">
             <label for="display_delay">Показывать при входе с задержкой</label>
             <input type="number" class="form-control" value="<?php echo $data['display_delay'] ?>" name="display_delay" id="display_delay">
-            <small for="hackinbox_counter__deadline__seconds" class="form-text text-muted">Секунд</small>
+            <small for="counter__deadline__seconds" class="form-text text-muted">Секунд</small>
           </div>
 
           <div class="form-group">

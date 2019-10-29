@@ -6,9 +6,6 @@ $_FILES['userfile']['size'];
 $_FILES['userfile']['tmp_name'];
 $_FILES['userfile']['error'];
 
-$uploaddir = '../img/';
-$uploadfile = $uploaddir . 'hackinbox_picture' . '.png';
-
 clearstatcache(); // clear the cache to avoid errors
 
 // image format check
