@@ -34,11 +34,13 @@
     }
 
     modalElementAllHide(status) {
-      this.modalElementAll.forEach(el => {
-        status === true
-          ? el.classList.add("hackinbox-hide")
-          : el.classList.remove("hackinbox-hide");
-      });
+      if (!this.hackinbox.classList.contains("hackinbox-hide")) {
+        this.modalElementAll.forEach(el => {
+          status === true
+            ? el.classList.add("hackinbox-hide")
+            : el.classList.remove("hackinbox-hide");
+        });
+      }
     }
   }
 
