@@ -9,11 +9,9 @@
    * (native js)
    */
   class HackinboxEvent {
-    constructor() {
-      this.hackinbox = document.querySelector(".hackinbox");
-      this.hackinboxOverlay = document.querySelector(".hackinbox-overlay");
-      this.hackinboxClose = document.querySelectorAll("[data-hackinbox=close]");
-    }
+    hackinbox = document.querySelector(".hackinbox");
+    hackinboxOverlay = document.querySelector(".hackinbox-overlay");
+    hackinboxClose = document.querySelectorAll("[data-hackinbox=close]");
 
     hackinboxHide() {
       this.hackinboxOverlay.style.cssText = "display:none !important";

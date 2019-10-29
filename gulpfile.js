@@ -21,7 +21,8 @@ function styles() {
 function scripts() {
   return gulp.src('./hackinbox/js/hackinbox.js')
     .pipe(babel({
-      presets: ['@babel/env']
+      presets: ['@babel/env'],
+      plugins: ["@babel/plugin-proposal-class-properties"]
     }))
     .pipe(concat('hackinbox.min.js'))
     .pipe(uglify())
