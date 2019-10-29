@@ -364,3 +364,9 @@
     left: 0;
     z-index: 2000000000;
 }
+
+/* hackinbox hide 'show' element */
+.hackinbox-hide{
+    display: none !important;
+    visibility: hidden !important;
+}

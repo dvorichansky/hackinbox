@@ -12,22 +12,33 @@
     hackinbox = document.querySelector(".hackinbox");
     hackinboxOverlay = document.querySelector(".hackinbox-overlay");
     hackinboxClose = document.querySelectorAll("[data-hackinbox=close]");
+    modalElementAll = document.querySelectorAll(".modal");
 
     hackinboxHide() {
       this.hackinboxOverlay.style.cssText = "display:none !important";
       this.hackinbox.style.cssText = "display:none !important";
+      this.modalElementAllHide(false);
       activateSetCookie();
     }
 
     hackinboxShow() {
       this.hackinboxOverlay.style.cssText = "display:block !important";
       this.hackinbox.style.cssText = "display:block !important";
+      this.modalElementAllHide(true);
     }
 
     hackinboxEventClose() {
       this.hackinboxClose.forEach(event =>
-        event.addEventListener("click", this.hackinboxHide.bind(this))
+        event.addEventListener("click", () => this.hackinboxHide())
       );
+    }
+
+    modalElementAllHide(status) {
+      this.modalElementAll.forEach(el => {
+        status === true
+          ? el.classList.add("hackinbox-hide")
+          : el.classList.remove("hackinbox-hide");
+      });
     }
   }
 
