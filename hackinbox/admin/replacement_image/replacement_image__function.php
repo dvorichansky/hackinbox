@@ -1,4 +1,5 @@
 <?php
+ini_set('default_charset', 'UTF-8');
 
 $_FILES['userfile']['name'];
 $_FILES['userfile']['type'];
@@ -9,7 +10,7 @@ $_FILES['userfile']['error'];
 clearstatcache(); // clear the cache to avoid errors
 
 // image format check
-$allowed =  array('png');
+$allowed =  array('png', 'webp');
 $filename = $_FILES['userfile']['name'];
 $ext = pathinfo($filename, PATHINFO_EXTENSION);
 if (!in_array($ext, $allowed)) {

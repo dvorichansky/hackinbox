@@ -108,7 +108,10 @@
       `<div class="hackinbox">
             <div class="hackinbox-container">
                 <div class="hackinbox-picture">
-                    <img class="hackinbox-picture__img" src="${url_widget}img/hackinbox_picture__${lang}.png" />
+                    <picture>
+                        <source type="image/webp" srcset="${url_widget}img/webp/hackinbox_picture__${lang}.webp">
+                        <img class="hackinbox-picture__img" src="${url_widget}img/png/hackinbox_picture__${lang}.png" />
+                    </picture>
                 </div>
                 <div class="hackinbox-content">                                  
                     <a href="javascript:void(0)" class="hackinbox-close" data-hackinbox="close">×</a>

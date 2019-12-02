@@ -67,18 +67,21 @@ document.addEventListener("submit", function(e) {
   let inputLang = target.querySelector(".input-lang");
   let lang = inputLang ? inputLang.value : '';
 
-  if (!target.classList.contains(`form-image__${lang}`)) {
+  let inputFormat = target.querySelector(".input-format");
+  let format = inputFormat ? inputFormat.value : '';
+
+  if (!target.classList.contains(`form-image__${lang}--${format}`)) {
     return;
   }
   e.preventDefault();
 
   const data = new FormData();
 
-  const customFile = jQuery(`#customFile__${lang}`)[0].files[0];
+  const customFile = jQuery(`#customFile__${lang}--${format}`)[0].files[0];
   data.append("userfile", customFile);
 
   jQuery.ajax({
-    url: `replacement_image/replacement_image__${lang}.php`,
+    url: `replacement_image/${format}/replacement_image__${lang}--${format}.php`,
     data: data,
     cache: false,
     contentType: false,

@@ -1,4 +1,5 @@
 <?php
+ini_set('default_charset', 'UTF-8');
 // create a folder "stuff" and add files with the names "user.txt" and "pass.txt" and save the data
 $username = file_get_contents("stuff/user.txt");
 $password = file_get_contents("stuff/pass.txt");
@@ -37,7 +38,8 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 </button>
               </div>
               <div class="modal-body">
-                <form enctype="multipart/form-data" action="" method="POST" class="form-image__ru mb-3" name="formImage">
+                <h6 class="mb-3">PNG</h6>
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__ru--png mb-3" name="formImage">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend input-group-lang">
@@ -46,8 +48,9 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                       <div class="custom-file">
                         <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
                         <input type="hidden" class="input-lang" name="lang" value="ru" />
-                        <input type="file" class="custom-file-input" id="customFile__ru" name="userfile" required>
-                        <label class="custom-file-label" for="customFile__ru">Выберите файл</label>
+                        <input type="hidden" class="input-format" name="format" value="png" />
+                        <input type="file" class="custom-file-input" id="customFile__ru--png" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__ru--png">Выберите файл</label>
                         <div class="invalid-feedback">Неверный формат файла</div>
                       </div>
                       <div class="text-center ml-2">
@@ -56,7 +59,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                     </div>
                   </div>
                 </form>
-                <form enctype="multipart/form-data" action="" method="POST" class="form-image__uk mb-3" name="formImage">
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__uk--png mb-3" name="formImage">
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-prepend input-group-lang">
@@ -65,8 +68,50 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                       <div class="custom-file">
                         <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
                         <input type="hidden" class="input-lang" name="lang" value="uk" />
-                        <input type="file" class="custom-file-input" id="customFile__uk" name="userfile" required>
-                        <label class="custom-file-label" for="customFile__uk">Выберите файл</label>
+                        <input type="hidden" class="input-format" name="format" value="png" />
+                        <input type="file" class="custom-file-input" id="customFile__uk--png" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__uk--png">Выберите файл</label>
+                        <div class="invalid-feedback">Неверный формат файла</div>
+                      </div>
+                      <div class="text-center ml-2">
+                        <button type="submit" class="btn btn-primary">Заменить</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <h6 class="mb-3">WEBP</h6>
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__ru--webp mb-3" name="formImage">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-lang">
+                        <span class="input-group-text">ru</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+                        <input type="hidden" class="input-lang" name="lang" value="ru" />
+                        <input type="hidden" class="input-format" name="format" value="webp" />
+                        <input type="file" class="custom-file-input" id="customFile__ru--webp" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__ru--webp">Выберите файл</label>
+                        <div class="invalid-feedback">Неверный формат файла</div>
+                      </div>
+                      <div class="text-center ml-2">
+                        <button type="submit" class="btn btn-primary">Заменить</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <form enctype="multipart/form-data" action="" method="POST" class="form-image__uk--webp mb-3" name="formImage">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-lang">
+                        <span class="input-group-text">uk</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
+                        <input type="hidden" class="input-lang" name="lang" value="uk" />
+                        <input type="hidden" class="input-format" name="format" value="png" />
+                        <input type="file" class="custom-file-input" id="customFile__uk--webp" name="userfile" required>
+                        <label class="custom-file-label" for="customFile__uk--webp">Выберите файл</label>
                         <div class="invalid-feedback">Неверный формат файла</div>
                       </div>
                       <div class="text-center ml-2">
@@ -77,7 +122,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 </form>
                 <hr>
                 <div class="text-center">
-                  <small class="form-text text-muted">Формат - <span class="badge badge-primary">png</span>, размер - <span class="badge badge-primary">до 200 кб</span>, разрешение - <span class="badge badge-primary">650x500</span></small>
+                  <small class="form-text text-muted">Формат - <span class="badge badge-primary">png и webp</span>, размер - <span class="badge badge-primary">до 200 кб</span>, разрешение - <span class="badge badge-primary">650x500</span></small>
                 </div>
               </div>
             </div>
@@ -156,18 +201,37 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 <div class="col-6">
                   <div class="input-group mb-2 justify-content-center">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" style="border-radius: 0.25rem;">ru</span>
+                      <span class="input-group-text" style="border-radius: 0.25rem;">ru (png)</span>
                     </div>
                   </div>
-                  <img src="../img/hackinbox_picture__ru.png" alt="">
+                  <img src="../img/png/hackinbox_picture__ru.png" alt="">
                 </div>
                 <div class="col-6">
                   <div class="input-group mb-2 justify-content-center">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" style="border-radius: 0.25rem;">uk</span>
+                      <span class="input-group-text" style="border-radius: 0.25rem;">uk (png)</span>
                     </div>
                   </div>
-                  <img src="../img/hackinbox_picture__uk.png" alt="">
+                  <img src="../img/png/hackinbox_picture__uk.png" alt="">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-2 justify-content-center">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="border-radius: 0.25rem;">uk (webp)</span>
+                    </div>
+                  </div>
+                  <img src="../img/webp/hackinbox_picture__uk.webp" alt="">
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-2 justify-content-center">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="border-radius: 0.25rem;">uk (webp)</span>
+                    </div>
+                  </div>
+                  <img src="../img/webp/hackinbox_picture__uk.webp" alt="">
                 </div>
               </div>
               <hr>
@@ -217,34 +281,35 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>Текст предложения</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend input-group-lang" for="content__title__ru">
+                        <span class="input-group-text">ru</span>
+                      </div>
+                      <input type="text" class="form-control" value="<?php echo $data['content']['title']['ru'] ?>" name="content__title__ru" id="content__title__ru">
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-lang" for="content__title__uk">
+                        <span class="input-group-text">uk</span>
+                      </div>
+                      <input type="text" class="form-control" value="<?php echo $data['content']['title']['uk'] ?>" name="content__title__uk" id="content__title__uk">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="content__title_color">Цвет текста</label>
+                    <input type="text" class="form-control pick-a-color" value="<?php echo $data['content']['title_color'] ?>" name="content__title_color" id="content__title_color">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-9">
-              <div class="form-group">
-                <label>Текст предложения</label>
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend input-group-lang" for="content__title__ru">
-                    <span class="input-group-text">ru</span>
-                  </div>
-                  <input type="text" class="form-control" value="<?php echo $data['content']['title']['ru'] ?>" name="content__title__ru" id="content__title__ru">
-                </div>
-                <div class="input-group">
-                  <div class="input-group-prepend input-group-lang" for="content__title__uk">
-                    <span class="input-group-text">uk</span>
-                  </div>
-                  <input type="text" class="form-control" value="<?php echo $data['content']['title']['uk'] ?>" name="content__title__uk" id="content__title__uk">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="content__title_color">Цвет текста</label>
-                <input type="text" class="form-control pick-a-color" value="<?php echo $data['content']['title_color'] ?>" name="content__title_color" id="content__title_color">
-              </div>
-            </div>
-          </div>
+          
 
           <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
 
