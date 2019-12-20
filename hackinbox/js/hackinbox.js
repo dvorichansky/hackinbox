@@ -76,7 +76,8 @@
   function parsingData(data) {
     if (checkForComplianceWithTheExceptionPage(data.exception_pages)) return;
 
-    if (data.status == "OFF") return activateSetCookie();
+    if (data.status == "OFF" || checkDisplayTime(data.display_time))
+      return activateSetCookie();
 
     hackinboxRender(data);
     hackinboxForm(data.form.configuration_file);
@@ -92,6 +93,33 @@
   function langDefinition() {
     const lang = document.getElementsByTagName("html")[0].lang;
     return lang === "uk" ? "uk" : "ru"; // "ru" default language
+  }
+
+  /**
+   * Check Display Time
+   * compares day, hours, minutes
+   * (native js)
+   */
+  function checkDisplayTime(time) {
+    const date = new Date(),
+      day = +date.getDay(),
+      hours = +date.getHours(),
+      minutes = +date.getMinutes(),
+      clock_with = time.clock.with.split(":"),
+      clock_on = time.clock.on.split(":");
+
+    if (time.day_week[day] === "off") {
+      return true;
+    } else {
+      if (hours >= +clock_with[0] && hours <= +clock_on[0]) {
+        if (hours == +clock_with[0]) {
+          return minutes <= +clock_with[1];
+        }
+        if (hours == +clock_on[0]) {
+          return minutes >= +clock_on[1];
+        }
+      }
+    }
   }
 
   /**

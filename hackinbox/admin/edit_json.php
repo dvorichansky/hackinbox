@@ -4,6 +4,9 @@ $data = json_decode($json_object, true);
 
 $data['exception_pages'] = array();
 
+// reset to overwrite
+$data['display_time']['day_week'] = array("off", "off", "off", "off", "off", "off", "off");
+
 foreach ($_POST as $key => $value) {
 
   if (!is_string($value)) {
@@ -24,6 +27,35 @@ foreach ($_POST as $key => $value) {
 
     case 'status':
       $data['status'] = $str;
+      break;
+
+    case 'display_time__day_week__0':
+      $data['display_time']['day_week']['0'] = "on";
+      break;
+    case 'display_time__day_week__1':
+      $data['display_time']['day_week']['1'] = "on";
+      break;
+    case 'display_time__day_week__2':
+      $data['display_time']['day_week']['2'] = "on";
+      break;
+    case 'display_time__day_week__3':
+      $data['display_time']['day_week']['3'] = "on";
+      break;
+    case 'display_time__day_week__4':
+      $data['display_time']['day_week']['4'] = "on";
+      break;
+    case 'display_time__day_week__5':
+      $data['display_time']['day_week']['5'] = "on";
+      break;
+    case 'display_time__day_week__6':
+      $data['display_time']['day_week']['6'] = "on";
+      break;
+
+    case 'display_time__clock__with':
+      $data['display_time']['clock']['with'] = $str;
+      break;
+    case 'display_time__clock__on':
+      $data['display_time']['clock']['on'] = $str;
       break;
 
     case 'content__title__ru':

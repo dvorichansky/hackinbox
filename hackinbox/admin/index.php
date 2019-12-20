@@ -7,7 +7,7 @@ $nonsense = "supercalifragilisticexpialidocious";
 
 if (isset($_COOKIE['PrivatePageLogin'])) {
   if ($_COOKIE['PrivatePageLogin'] == md5($password . $nonsense)) {
-    ?>
+?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -109,7 +109,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                       <div class="custom-file">
                         <input type="hidden" name="MAX_FILE_SIZE" value="200000" />
                         <input type="hidden" class="input-lang" name="lang" value="uk" />
-                        <input type="hidden" class="input-format" name="format" value="png" />
+                        <input type="hidden" class="input-format" name="format" value="webp" />
                         <input type="file" class="custom-file-input" id="customFile__uk--webp" name="userfile" required>
                         <label class="custom-file-label" for="customFile__uk--webp">Выберите файл</label>
                         <div class="invalid-feedback">Неверный формат файла</div>
@@ -149,11 +149,11 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
         <form action="" class="form mb-5">
           <?php
-              $json_object = file_get_contents('../hackinbox_data.json');
-              $data = json_decode($json_object, true);
-              ?>
+          $json_object = file_get_contents('../hackinbox_data.json');
+          $data = json_decode($json_object, true);
+          ?>
 
-          <h3 class="mb-4">Информация о виджете</h3>
+          <h3 class="mb-4">Информация</h3>
 
           <div class="form-group">
             <label for="name">Имя</label>
@@ -169,16 +169,16 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
             <label for="status">Статус</label>
             <select class="form-control" name="status" id="status">
               <?php
-                  $status = $data['status'];
+              $status = $data['status'];
 
-                  if ($status == "ON") {
-                    echo "<option>ON</option>
+              if ($status == "ON") {
+                echo "<option>ON</option>
                   <option>OFF</option>";
-                  } else if ($status == "OFF") {
-                    echo "<option>OFF</option>
+              } else if ($status == "OFF") {
+                echo "<option>OFF</option>
                   <option>ON</option>";
-                  }
-                  ?>
+              }
+              ?>
             </select>
             <small class="form-text text-muted">ON (включен), OFF (выключен)</small>
           </div>
@@ -187,9 +187,44 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
 
           <hr class="mt-5 mb-5">
 
-          <h3 class="mb-4">Текст и внешний вид виджета</h3>
+          <h3 class="mb-4">Время отображения</h3>
 
+          <div class="row">
+            <div class="col-md-7 mb-3 m-md-0">
+              <span class="d-block mb-3">Дни недели</span>
+              <div class="form-row m-auto">
+                <?php
+                $day_week = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
+                for ($i = 0; $i <= 6; $i++) {
+                  echo '<div class="custom-control custom-checkbox mr-3 mb-1">';
+                  echo "<input type='checkbox' class='custom-control-input day-week-checkbox' name='display_time__day_week__$i' id='display_time__day_week__$i'";
+                  echo ($data['display_time']['day_week'][$i] == "on") ? 'checked' : '';
+                  echo ">";
+                  echo "<label class='custom-control-label' for='display_time__day_week__$i'>" . $day_week[$i] . "</label>";
+                  echo '</div>';
+                }
+                ?>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <span class="d-block mb-2">Выводить</span>
+              <div class="form-inline">
+                <span>с</span>
+                <div class="ml-2 mr-2">
+                  <input type="time" class="form-control" id="display_time__clock__with" name="display_time__clock__with" min="00:00" max="24:00" required value="<?= $data['display_time']['clock']['with'] ?>">
+                </div>
+                <span>по</span>
+                <div class="ml-2">
+                  <input type="time" class="form-control" id="display_time__clock__on" name="display_time__clock__on" min="00:00" max="24:00" required value="<?= $data['display_time']['clock']['on'] ?>">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-5 mb-5">
+
+          <h3 class="mb-4">Текст и внешний вид</h3>
 
           <div class="row">
             <div class="col-md-4">
@@ -220,10 +255,10 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 <div class="col-6">
                   <div class="input-group mb-2 justify-content-center">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" style="border-radius: 0.25rem;">uk (webp)</span>
+                      <span class="input-group-text" style="border-radius: 0.25rem;">ru (webp)</span>
                     </div>
                   </div>
-                  <img src="../img/webp/hackinbox_picture__uk.webp" alt="">
+                  <img src="../img/webp/hackinbox_picture__ru.webp" alt="">
                 </div>
                 <div class="col-6">
                   <div class="input-group mb-2 justify-content-center">
@@ -248,22 +283,22 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 <label for="appearance__box_shadow">Тень от окна</label>
                 <select class="form-control" name="appearance__box_shadow" id="appearance__box_shadow">
                   <?php
-                      $box_shadow = $data['appearance']['box_shadow'];
+                  $box_shadow = $data['appearance']['box_shadow'];
 
-                      if ($box_shadow == "0 21px 32px 0 rgba(0, 0, 0, 0.25)") {
-                        echo "<option>strong</option>
+                  if ($box_shadow == "0 21px 32px 0 rgba(0, 0, 0, 0.25)") {
+                    echo "<option>strong</option>
                   <option>faint</option>
                   <option>without</option>";
-                      } else if ($box_shadow == "0 10px 15px 0 rgba(0, 0, 0, 0.15)") {
-                        echo "<option>faint</option>
+                  } else if ($box_shadow == "0 10px 15px 0 rgba(0, 0, 0, 0.15)") {
+                    echo "<option>faint</option>
                   <option>strong</option>
                   <option>without</option>";
-                      } else {
-                        echo "<option>without</option>
+                  } else {
+                    echo "<option>without</option>
                   <option>faint</option>
                   <option>strong</option>";
-                      }
-                      ?>
+                  }
+                  ?>
                 </select>
                 <small class="form-text text-muted">without (без тени), faint (слабая), strong (сильная)</small>
               </div>
@@ -308,8 +343,6 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
               </div>
             </div>
           </div>
-
-          
 
           <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
 
@@ -393,7 +426,7 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
                 </div>
               </div>
             </div>
-            
+
             <div class="col-md-6">
               <div class="form-group">
                 <label for="counter__color">Цвет цифр</label>

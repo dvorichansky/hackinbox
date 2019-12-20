@@ -97,7 +97,7 @@
             var h = document.getElementsByTagName("link")[0];
             var css = document.createElement("link");
             css.rel = "stylesheet";
-            css.href = "/hackinbox/css/hackinbox.min.css";
+            css.href = "./hackinbox/css/hackinbox.min.css";
             h.parentNode.insertBefore(css, h);
             var h = document.getElementsByTagName("head")[0];
             var js = document.createElement("script");
@@ -105,7 +105,7 @@
             js.async = true;
             js.setAttribute("nomaps", "");
             js.setAttribute("charset", "UTF-8");
-            js.src = "/hackinbox/js/hackinbox.min.js";
+            js.src = "./hackinbox/js/hackinbox.min.js";
             h.appendChild(js);
           }, 10);
         }
