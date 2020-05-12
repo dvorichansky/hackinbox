@@ -25,26 +25,26 @@
     border-radius: 8px;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
     .hackinbox-container {
         display: flex;
     }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 767px) {
     .hackinbox {
         max-width: 400px;
         width: 100%;
     }
 }
 
-@media (max-width: 577px) {
+@media (max-width: 575px) {
     .hackinbox {
         max-width: 310px;
     }
 }
 
-@media (max-width: 1025px) and (max-height: 420px) {
+@media (max-width: 1023px) and (max-height: 420px) {
     .hackinbox {
         top: 20px;
         transform: translate(-50%, 0);
@@ -59,7 +59,7 @@
     float: none !important;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
     .hackinbox-picture {
         max-width: 650px;
         max-height: 500px;
@@ -71,14 +71,14 @@
     }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1023px) {
     .hackinbox-picture__img {
         max-width: 100%;
         border-top-right-radius: 8px;
     }
 }
 
-@media (max-width: 1025px) and (max-height: 420px) {
+@media (max-width: 1023px) and (max-height: 420px) {
     .hackinbox-picture__img {
         display: none !important;
     }
@@ -96,7 +96,7 @@
     color: #040527;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
     .hackinbox-content {
         width: 250px;
         border-top-right-radius: 8px;
@@ -109,7 +109,7 @@
     }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1023px) {
     .hackinbox-content {
         padding: 10px;
         border-bottom-left-radius: 8px;
@@ -122,7 +122,7 @@
     }
 }
 
-@media (max-width: 1025px) and (max-height: 420px) {
+@media (max-width: 1023px) and (max-height: 420px) {
     .hackinbox-content {
         border-radius: 8px;
     }
@@ -246,7 +246,7 @@
     margin-top: 20px;
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1023px) {
     .hackinbox-form__success-text{
         font-size: 14px;
         line-height: 16px;
@@ -323,7 +323,7 @@
     }
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 1023px) {
     .hackinbox-counter {
         display: none;
     }
@@ -348,7 +348,7 @@
     text-decoration: none !important;
 }
 
-@media (max-width: 1025px) and (min-height: 420px) {
+@media (max-width: 1023px) and (min-height: 420px) {
     .hackinbox-close {
         color: #fff;
     }
