@@ -6,6 +6,7 @@ $data['exception_pages'] = array();
 
 // reset to overwrite
 $data['display_time']['day_week'] = array("off", "off", "off", "off", "off", "off", "off");
+$data['display_out_page_focus'] = "off";
 
 foreach ($_POST as $key => $value) {
 
@@ -192,6 +193,9 @@ foreach ($_POST as $key => $value) {
 
     case 'display_delay':
       $data['display_delay'] = $str;
+      break;
+    case 'display_out_page_focus':
+      $data['display_out_page_focus'] = 'on';
       break;
 
       // should be the last

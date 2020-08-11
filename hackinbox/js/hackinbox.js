@@ -50,6 +50,7 @@
    */
   const url_widget = `${location.origin}/hackinbox/`;
   const url_json = `${url_widget}hackinbox_data.json`;
+  let hackinboxShowStatus = false;
 
   /**
    * request for data
@@ -83,11 +84,33 @@
     hackinboxForm(data.form.configuration_file);
     setTimeInitializeClock(data.counter.deadline);
 
+    if(data.display_out_page_focus == 'on') {
+      onmouseoutListener();
+    }
+
     setTimeout(() => {
+      hackinboxCallShow();
+    }, +data.display_delay * 1000);
+  }
+
+  function hackinboxCallShow() {
+    if(!hackinboxShowStatus) {
       const hackinboxEvent = new HackinboxEvent();
       hackinboxEvent.hackinboxShow();
       hackinboxEvent.hackinboxEventClose();
-    }, +data.display_delay * 1000);
+      hackinboxShowStatus = true;
+    }
+  }
+
+  /**
+   * Track loss of focus with page
+   */
+  function onmouseoutListener() {
+    document.body.onmouseout = function(event) {
+      if(event.relatedTarget === null) {
+        hackinboxCallShow();
+      }
+    }
   }
 
   function langDefinition() {

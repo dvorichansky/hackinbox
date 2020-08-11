@@ -570,6 +570,13 @@ if (isset($_COOKIE['PrivatePageLogin'])) {
           </div>
 
           <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input day-week-checkbox" name="display_out_page_focus" id="display_out_page_focus" <?php echo $data['display_out_page_focus'] == 'on' ? 'checked' : ''; ?>>
+              <label class="custom-control-label" for="display_out_page_focus">Отображение при потере фокуса со страницей</label>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label>Страницы исключения</label>
 
             <div class="row" id="exceptionInputs">
