@@ -272,6 +272,8 @@
           }
         </style>`
     );
+    let event = new CustomEvent("hackinboxRender");
+    document.dispatchEvent(event);
   }
 
   /**
@@ -312,11 +314,11 @@
    * (used jQuery)
    */
   function hackinboxForm(configuration_file) {
-    const phone = $(".hackinbox-form [name=phone]");
-    const submit = $(".hackinbox-form [type=submit]");
-    const inputPhone = document.querySelector(".hackinbox-form [name=phone]");
+    const $form = $(".hackinbox-form");
+    const $phone = $form.find("[name=phone]");
+    const $submit = $form.find("[type=submit]");
 
-    inputMaskInitialize(inputPhone);
+    inputMaskInitialize($phone[0]);
 
     document.addEventListener("submit", function(e) {
       const target = e.target;
@@ -325,13 +327,13 @@
       }
       e.preventDefault();
 
-      if (inputPhone.value.indexOf("_") !== -1) {
-        phone.addClass("hackinbox-form__userphone-error");
+      if ($phone[0].value.indexOf("_") !== -1) {
+        $phone.addClass("hackinbox-form__userphone-error");
         return;
       }
-      phone.removeClass("hackinbox-form__userphone-error");
+      $phone.removeClass("hackinbox-form__userphone-error");
 
-      submit.prop("disabled", true);
+      $submit.prop("disabled", true);
 
       $.ajax({
         type: "POST",
@@ -340,6 +342,9 @@
         dataType: "html",
         beforeSend: function() {},
         success: function(data) {
+          let event = new CustomEvent("hackinboxFormSuccess");
+          target.dispatchEvent(event);
+
           $(target)
             .contents()
             .filter(function() {
@@ -349,7 +354,10 @@
           $(".hackinbox-counter, .hackinbox-content__title").remove();
           activateSetCookie();
         },
-        error: function() {}
+        error: function() {
+          let event = new CustomEvent("hackinboxFormError");
+          target.dispatchEvent(event)
+        }
       });
     });
   }

@@ -31,3 +31,12 @@ function scripts() {
 
 gulp.task('min_css', gulp.series(styles));
 gulp.task('min_js', gulp.series(scripts));
+
+gulp.task('watch', () => {
+  gulp.watch(['./hackinbox/css/hackinbox.css'], (done) => {
+      gulp.series('min_css')(done);
+  });
+  gulp.watch(['./hackinbox/js/hackinbox.js'], (done) => {
+      gulp.series('min_js')(done);
+  });
+});
