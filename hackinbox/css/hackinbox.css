@@ -98,7 +98,8 @@
 
 @media (min-width: 1024px) {
     .hackinbox-content {
-        width: 250px;
+        max-width: 250px;
+        width: 100%;
         border-top-right-radius: 8px;
     }
 
